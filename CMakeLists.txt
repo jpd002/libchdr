@@ -47,6 +47,7 @@ set(CHDR_SOURCES
   src/libchdr_bitstream.c
   src/libchdr_cdrom.c
   src/libchdr_chd.c
+  src/libchdr_file.c
   src/libchdr_flac.c
   src/libchdr_huffman.c
 )

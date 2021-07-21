@@ -29,6 +29,25 @@ typedef int32_t INT32;
 typedef int16_t INT16;
 typedef int8_t INT8;
 
+struct _core_file
+{
+    UINT64 (*read_function)(void*, void*, UINT64);
+    void (*seek_function)(void*, INT64, int);
+    UINT64 (*tell_function)(void*);
+    void* user_data;
+};
+typedef struct _core_file core_file;
+
+core_file* core_falloc();
+void core_ffree(core_file*);
+
+core_file* core_fopen(const char*);
+void core_fclose(core_file*);
+UINT64 core_fread(core_file*, void*, UINT64);
+void core_fseek(core_file*, INT64, int);
+UINT64 core_ftell(core_file*);
+
+#if 0
 #define core_file FILE
 #define core_fopen(file) fopen(file, "rb")
 #if defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(__WIN64__)
@@ -46,6 +65,7 @@ typedef int8_t INT8;
 #endif
 #define core_fread(fc, buff, len) fread(buff, 1, len, fc)
 #define core_fclose fclose
+#endif
 
 static UINT64 core_fsize(core_file *f)
 {
