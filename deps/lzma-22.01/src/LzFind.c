@@ -626,6 +626,9 @@ LzFind_SaturSub_128(UInt32 subValue, CLzRef *items, const CLzRef *lim)
 #ifdef USE_AVX2
 
 #include <immintrin.h> // avx
+#if defined(__clang__)
+#include <avx2intrin.h>
+#endif
 
 #define SASUB_256(i) *(__m256i *)(void *)(items + (i) * 8) = _mm256_sub_epi32(_mm256_max_epu32(*(const __m256i *)(const void *)(items + (i) * 8), sub2), sub2); // AVX2
 
