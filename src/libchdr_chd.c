@@ -2579,7 +2579,7 @@ static chd_error header_validate(const chd_header *header)
 	}
 
 	/* some basic size checks to prevent huge mallocs */
-	if (header->hunkbytes >= CHD_MAX_HUNK_SIZE || ((uint64_t)header->hunkbytes * (uint64_t)header->totalhunks) >= CHD_MAX_FILE_SIZE)
+	if (header->hunkbytes >= CHD_MAX_HUNK_SIZE)
 		return CHDERR_INVALID_PARAMETER;
 
 	return CHDERR_NONE;
